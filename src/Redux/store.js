@@ -1,8 +1,12 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import {
+    createStore,
+    compose,
+    applyMiddleware
+} from 'redux';
 import defaultReducer from './reducers.js';
 import createSagaMiddleware from 'redux-saga';
-import {watchSetPatientsAsync} from '../Redux/Sagas/patientSagas'
-import {watchSetEncountersAsync} from '../Redux/Sagas/encounterSagas'
+import { watchCampaignsAsync } from '../Redux/Sagas/campaignSaga'
+import { watchNpcsAsync } from '../Redux/Sagas/npcSaga'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +17,6 @@ const store = createStore(defaultReducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
     ));
 
-sagaMiddleware.run(watchSetPatientsAsync)
-sagaMiddleware.run(watchSetEncountersAsync)
+sagaMiddleware.run(watchCampaignsAsync)
+sagaMiddleware.run(watchNpcsAsync)
 export default store;

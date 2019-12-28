@@ -1,11 +1,14 @@
-import {combineReducers} from 'redux';
-import patientReducer from '../Redux/Reducers/patientReducer'
-import encounterReducer from '../Redux/Reducers/encounterReducer'
+import {
+    combineReducers
+} from 'redux';
+import campaignReducer from '../Redux/Reducers/campaignReducer'
+import npcReducer from '../Redux/Reducers/npcReducer'
+
 
 //reducers being combined
 const defaultReducer = combineReducers({
-    patient: patientReducer,
-    encounter: encounterReducer
+    campaign: campaignReducer,
+    npc: npcReducer
 })
 
 export default defaultReducer;

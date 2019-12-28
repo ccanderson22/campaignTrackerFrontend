@@ -1,13 +1,14 @@
 import React from 'react';
-import './App.css';
-import NavBar from './Components/Navbar/Navbar'
-import Routes from './Components/Navbar/Routes';
+// import ReactDOM from "react-dom";
+import Routes from './Components/Routes/Routes'
+import Navbar from './Components/Navbar/Navbar'
+// import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <Navbar />
       <Routes />
     </div>
   );

@@ -1,35 +1,3 @@
-Thank you for choosing Catalyte for your software need, follow the steps below to get the frontend up and running
-
-***These steps are assuming you have already set up the SuperHealthInc(LINK BELOW) backend and have it running, if you have not done that, go do that first then setup the frontend***
-https://gitlab.catalyt.es/training/cycleworkinggroups/denver/denver_2019_cycle_1/_associates/canderson/projects/canderson_final_backend
-#
-~
-
-1. Open your IDE (i.e. VisualStudio Code) then click File in the upper left and go down to Open Folder, and select the folder you have all the frontend files in.
-
-
-2. Once the project is open, go to the top navbar once again and select Terminal,and go down and click the 'New Terminal' option.
-
-
-3. With the terminal open, make sure you have the project file selected in the file path. Next up, in the terminal type 'npm install', it might take a minute to install all the files.
-
-4. Next is to run the tests by entering 'npm run coverage' to the terminal and hitting enter
-
-5. Next will be to build the frontend, in the terminal enter 'npm run build' and hit enter
-
-6. Once build is complete in the terminal enter 'npm install -g serve' and hit enter, and wait for it to complete.
-
-7. After that install is done, enter 'serve -s build' in the terminal and hit enter. There should be a success message that pops up in the terminal. 
-
-8. After all the above step have been complete the front end should be running on 'http://localhost:5000/'
-
-
-
-**Postman collection:** https://www.getpostman.com/collections/e14ea1256df572743142
-**Swagger Link:**<br> http://localhost:8080/swagger-ui.html#/
-#
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
