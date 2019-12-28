@@ -12,8 +12,9 @@ export default function Npcs() {
 
     
     useEffect(() =>  {
+        console.log('ID: ', campaignState.campaignId)
         dispatch(nActions.setNpcsAsync(campaignState.campaignId))
-    }, [campaignState.campaignId, dispatch])
+    }, [campaignState, campaignState.campaignId, dispatch])
     return (
         <Paper>
             <Typography>

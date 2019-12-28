@@ -12,8 +12,9 @@ export const setNpcId = (id) => {
         payload: id
     }
 }
-export const setNpcsAsync = ( ) => {
+export const setNpcsAsync = (id) => {
     return {
-        type: constants.SET_NPCS_ASYNC
+        type: constants.SET_NPCS_ASYNC,
+        payload: id
     }
 }

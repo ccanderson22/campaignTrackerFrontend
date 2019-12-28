@@ -5,13 +5,16 @@ import {
 } from 'redux-saga/effects';
 import * as Api from '../api';
 import { setNpcs } from '../Actions/npcActions'
+import { setCampaigns } from '../Actions/campaignActions'
 import constants from '../constants';
 
 
-export function* setNpcsAsync(id) {
+export function* setNpcsAsync(action) {
     try {
-        const data = yield call(Api.fetchNpcsByCampaign(id));
-        console.log(data)
+        console.log('saga: ', action)
+        let id = action.payload
+        const data = yield call(Api.fetchNpcsByCampaign, id);
+        console.log('data', data)
         yield put(setNpcs(data))
     } catch (err) {
 
