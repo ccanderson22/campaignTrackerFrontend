@@ -17,3 +17,9 @@ export const setCampaignsAsync = ( ) => {
         type: constants.SET_CAMPAIGNS_ASYNC
     }
 }
+export const addCampaignAsync = (campaign) => {
+    return {
+        type: constants.ADD_CAMPAIGN_ASYNC,
+        payload: campaign
+    }
+}

@@ -15,7 +15,19 @@ export function* setCampaignsAsync() {
 
     }
 }
+export function* addCampaignAsync(campaign) {
+    try {
+        yield call(Api.addCampaign, campaign);
+        const data = yield call(Api.fetchCampaigns);
+        yield put(setCampaigns(data))
+        // yield put(setCampaigns(data))const data = 
+    } catch (err) {
+
+    }
+}
+
 
 export function* watchCampaignsAsync() {
     yield takeEvery(constants.SET_CAMPAIGNS_ASYNC, setCampaignsAsync)
+    yield takeEvery(constants.ADD_CAMPAIGN_ASYNC, addCampaignAsync)
 }
