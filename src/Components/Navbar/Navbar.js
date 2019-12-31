@@ -127,17 +127,21 @@ export default function Navbar() {
             <Divider />
             <List>
              {routes.map(route => (
-             
-             <Link to={route.path} key={route.name} onBlur={handleDrawerClose}>
-                <ListItem button>
-                    <ListItemIcon>
-                        <route.icon/>
-                    </ListItemIcon>
-                        <ListItemText
-                        primary={route.name}//TODO: Style the link to look better
-                        />   
-                </ListItem>
-            </Link> ))}
+             route.navLink ? (
+
+                <Link to={route.path} key={route.name} onBlur={handleDrawerClose}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <route.icon/>
+                        </ListItemIcon>
+                            <ListItemText
+                            primary={route.name}//TODO: Style the link to look better
+                            />   
+                    </ListItem>
+            </Link>
+             ) : (
+               ''
+             ) ))}
             </List>
             <Divider />
           </Drawer>

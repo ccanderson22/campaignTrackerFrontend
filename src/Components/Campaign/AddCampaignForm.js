@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import constants from '../../Redux/constants'
 import * as cActions from '../../Redux/Actions/campaignActions'
-import { TextField, Paper, Button } from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,17 +11,27 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function AddCampaignForm(props) {
     const dispatch = useDispatch();
-    const [playerCount, setPlayetCount] = useState(0);
+    const [players, setPlayers] = useState([]);
     const { open, close } = props; 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let newCampaign = {
             name: e.target.campaignName.value,
-            players: e.target.players.value.split(', ' || ' '),
+            players: players,
         }
         console.log(newCampaign)
         dispatch(cActions.addCampaignAsync(newCampaign))
+    }
+
+    const addPlayer = (e, player) => {
+        e.preventDefault();
+        if(players){
+          setPlayers([...players, player])
+        } else {
+          setPlayers([player])
+        }
+       document.getElementsByName('player')[0].value = '';
     }
 
     return (
@@ -35,9 +44,15 @@ export default function AddCampaignForm(props) {
             <form onSubmit={(e) => handleSubmit(e)}>
                     <TextField normal fullWidth required id="standard-required" label="Campaign Name" variant='outlined' name='campaignName'/>
                     <br/>
-                    <TextField normal fullWidth required id="standard-required" label="Players" variant='outlined' name='players'/>
+                    <br/>
+                      <TextField className='player' normal required id="standard-required" label="Player" variant='outlined' name='player'/>
+                    <Button onClick={(e) => addPlayer(e, document.getElementsByName('player')[0].value)} variant='contained' color='primary'>Add Player</Button>
+                   {/* TODO: Make the displayed players pills  */}
+                    <Typography>
+                    Players: <br/>
+                      {players.join(', ')}
+                    </Typography>
                     <DialogActions>
-                      
                     <Button type='submit'>Submit</Button>
                     <Button onClick={close} color="primary">
                         Cancel

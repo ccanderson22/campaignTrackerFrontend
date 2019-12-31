@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import routes from './route'
-import { Switch, Route, Redirect } from "react-router-dom";
-import CampaignSelection from '../../Views/CampaignSelection/CampaignSelection'
+import { Switch, Route } from "react-router-dom";
 
 export default function Routes(props) {
-    const campaignState  = useSelector(state => state.campaign)
 
     useEffect(() => {
 

@@ -5,7 +5,6 @@ import {
 } from 'redux-saga/effects';
 import * as Api from '../api';
 import { setNpcs } from '../Actions/npcActions'
-import { setCampaigns } from '../Actions/campaignActions'
 import constants from '../constants';
 
 

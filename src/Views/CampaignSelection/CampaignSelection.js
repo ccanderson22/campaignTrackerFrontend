@@ -11,15 +11,15 @@ import AddCampaignForm from '../../Components/Campaign/AddCampaignForm';
 
 const useStyles = makeStyles({
     page: {
+        marginTop: '1%',
         position: 'relative',
-        // height: '1000px',
         width: '100%',
         backgroundColor: 'gray'
     },
     title: {
         textAlign: 'center',
-        paddingBottom: '5%',
-        paddingTop: '2%'
+        paddingBottom: '1%',
+        paddingTop: '1%'
     },
     addBtn: {
         width: '100%'
@@ -41,15 +41,15 @@ export default function CampaignSelection(props) {
     }
 
     function selectCampaign(id) {
-        dispatch(cActions.setCampaignId(id))
-    
+        // dispatch(cActions.setCampaignId(id))
+        sessionStorage.setItem('campaignId', id)
     }
 
     return (
-        <Container> 
+        <Container maxWidth='xl'> 
                 <Paper className={classes.page} elevation={3}>
                     <Typography variant="h2" className={classes.title}>
-                       Campaigns
+                       Choose a Campaign
                     </Typography>
                     <Grid container justify='center'>
                         <Grid item xs={9}>
@@ -62,7 +62,8 @@ export default function CampaignSelection(props) {
                                 </Button>
                         </Grid>
                     </Grid>
-                    <Grid justify="center" container spacing={3}>
+                    <br/>
+                    <Grid justify="center" container spacing={2}>
                         {campaignState.campaigns.map(campaign => (
                             <Grid item xs={6} md={4} key={campaign._id}>
                                 <Link onClick={() => selectCampaign(campaign._id)} to='/campaign'>
@@ -73,12 +74,10 @@ export default function CampaignSelection(props) {
                             </Grid>
                         ))}
                     </Grid>
-                        
-                            <AddCampaignForm 
-                            open={open}
-                            close={handleModal}
-                            />
-                        
+                        <AddCampaignForm 
+                        open={open}
+                        close={handleModal}
+                        />
                 </Paper>
         </Container>
     )

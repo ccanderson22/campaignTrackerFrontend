@@ -97,14 +97,11 @@ export const fetchNpcsByCampaign = (cId) => {
     return new Promise((resolve, reject) => {
         return fetch(url, init)
             .then(res => {
-                let jsonResp = res.json();
-                console.log('jsonResp: ', jsonResp)
-                return jsonResp;
-                
-                // if (res.status <= 204) {
-                //     return jsonResp;
-                // }
-                // throw res.status
+                let jsonResp = res.json();                
+                if (res.status <= 204) {
+                    return jsonResp;
+                }
+                throw res.status
             })
             .then(jsonResp => {
                 resolve(jsonResp)

@@ -1,11 +1,13 @@
 import React from 'react'
-import { Paper } from '@material-ui/core'
+import { Paper, Container } from '@material-ui/core'
 
 export default function CampaignHome(props) {
 
     return (
-        <Paper>
-            Placeholder
-        </Paper>
+        <Container maxWidth='xl'>
+            <Paper>
+                Placeholder
+            </Paper>
+        </Container>
     )
 }
