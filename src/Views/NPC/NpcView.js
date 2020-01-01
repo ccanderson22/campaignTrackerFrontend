@@ -7,6 +7,7 @@ import NpcStats from '../../Components/NPC/NpcStats'
   
     return (
       <Paper
+      elevation={4}
         component="div"
         role="tabpanel"
         hidden={value !== index}
@@ -34,15 +35,13 @@ export default function NpcView() {
       };
 
     return (
-        <Container maxWidth='xl'>
-            <Paper>
-                <Typography variant='h1'>
-                    NPC Details
-                </Typography>
+      <div>
                 <AppBar position='static'>
                     <Tabs value={value} onChange={handleChange} centered>
-                        <Tab label='NPC Details' {...a11yProps(0)}/>
-                        <Tab label='NPC Stats' {...a11yProps(1)}/>
+                        <Tab label='Overview' {...a11yProps(0)}/>
+                        <Tab label='Personality' {...a11yProps(1)}/>
+                        <Tab label='Affiliations' {...a11yProps(2)}/>
+                        <Tab label='Statistics' {...a11yProps(3)}/>
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
@@ -51,7 +50,15 @@ export default function NpcView() {
                 <TabPanel value={value} index={1}>
                     <NpcStats />
                 </TabPanel>
-            </Paper>
-        </Container>
+                <TabPanel value={value} index={2}>
+                    <NpcStats />
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    <NpcStats />
+                </TabPanel>
+
+      </div>
+              
+        
     )
 }

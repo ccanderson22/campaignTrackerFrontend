@@ -1,18 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import * as cActions from '../../Redux/Actions/campaignActions'
-import { TextField, Button, Typography } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { TextField,
+        Button, 
+        Typography,
+        ExpansionPanel,
+        ExpansionPanelSummary, 
+        ExpansionPanelDetails, 
+        ExpansionPanelActions, Grid, IconButton, Chip, makeStyles } from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+const useStyles = makeStyles(theme => ({
+  chip: {
+    position: 'relative',
+    padding: '1%',
+    margin: '1%'
+  }
+    
+  
+}))
 
-export default function AddCampaignForm(props) {
+export default function AddCampaignForm() {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const [players, setPlayers] = useState([]);
-    const { open, close } = props; 
+    const [show, setShow] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,6 +35,21 @@ export default function AddCampaignForm(props) {
         }
         console.log(newCampaign)
         dispatch(cActions.addCampaignAsync(newCampaign))
+        document.getElementsByName('campaignName')[0].value = '';
+      }
+
+    const handleShow = () => {
+        setShow(!show)
+    }
+
+    const removePlayer = (player) => {
+      let newPlayers = []
+      players.forEach((plyr) => {
+        if(player !== plyr){
+          newPlayers.push(plyr)
+        }
+      })
+      setPlayers(newPlayers)
     }
 
     const addPlayer = (e, player) => {
@@ -35,38 +63,75 @@ export default function AddCampaignForm(props) {
     }
 
     return (
-        <Dialog open={open} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add New Campaign</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Enter a new Campaign name and player names
-          </DialogContentText>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                    <TextField normal fullWidth required id="standard-required" label="Campaign Name" variant='outlined' name='campaignName'/>
-                    <br/>
-                    <br/>
-                      <TextField className='player' normal required id="standard-required" label="Player" variant='outlined' name='player'/>
-                    <Button onClick={(e) => addPlayer(e, document.getElementsByName('player')[0].value)} variant='contained' color='primary'>Add Player</Button>
-                   {/* TODO: Make the displayed players pills  */}
-                    <Typography>
-                    Players: <br/>
-                      {players.join(', ')}
-                    </Typography>
-                    <DialogActions>
-                    <Button type='submit'>Submit</Button>
-                    <Button onClick={close} color="primary">
-                        Cancel
-                    </Button>
-                    </DialogActions>
-                </form>
-        </DialogContent>
-        <DialogActions>
-         {/* <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button> */}
-        </DialogActions>
-      </Dialog>
-        
+      <div>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}>
+              <Typography>
+                Add new Campaign 
+              </Typography>
+          </ExpansionPanelSummary>
+          <form onSubmit={(e) => handleSubmit(e)}>
+          <ExpansionPanelDetails>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12}>
+                        <TextField 
+                          normal='true' 
+                          fullWidth 
+                          required 
+                          id="standard-required" 
+                          label="Campaign Name" 
+                          variant='outlined' 
+                          name='campaignName'/>
+                        </Grid>
+                      {show ? (
+                        <Fragment>
+                            <Grid item xs={10}>
+                            <TextField 
+                              className='player' 
+                              normal='true' 
+                              fullWidth
+                              id="standard-required" 
+                              label="Player" 
+                              variant='outlined' 
+                              name='player'/>
+                          </Grid>
+                          <Grid item xs={1}>
+                            <IconButton 
+                              onClick={(e) => addPlayer(e, document.getElementsByName('player')[0].value)} 
+                              variant='contained' 
+                              color='primary'
+                              title='Add Player'>
+                              <AddCircleOutlineIcon
+                                fontSize='large'
+                                />
+                            </IconButton>
+                          </Grid>
+                        <Grid item xs={12}>
+                            <div>
+                              <Typography>Players:</Typography>
+                                {players.map(player => (
+                                    <Chip 
+                                      className={classes.chip}
+                                      key={player}
+                                      label={player}
+                                      onDelete={() => removePlayer(player)}/>
+                                ))}
+                            </div>
+                          </Grid>
+                        </Fragment>
+                      ) : (
+                        <Button onClick={() => handleShow()}>Add Players</Button>
+                      )}
+                    </Grid>
+                  
+          </ExpansionPanelDetails>
+          <ExpansionPanelActions>
+                      <Button type='submit'>Submit</Button>
+          </ExpansionPanelActions>
+          </form>
+        </ExpansionPanel>
+      </div>
     )
 }
 

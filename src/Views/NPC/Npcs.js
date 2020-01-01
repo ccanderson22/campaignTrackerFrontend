@@ -6,6 +6,7 @@ import * as nActions from '../../Redux/Actions/npcActions'
 import Grid from '@material-ui/core/Grid';
 import NpcCard from '../../Components/NPC/NpcCard'
 import { Link } from "react-router-dom";
+import AddNpcForm from '../../Components/NPC/AddNpcForm';
 
 const useStyles = makeStyles({
     page: {
@@ -51,6 +52,12 @@ export default function Npcs() {
                             NPCs
                         </Typography>
                     
+                    <Grid justify="center" container>
+                         <Grid item xs={12}>
+                            <AddNpcForm/>
+                        </Grid>
+                    </Grid>
+                    <br/>
                     <Grid justify="center" container spacing={3}>
                                 {npcState.npcs.map(npc => (
                                     <Grid item xs={6} md={3} key={npc._id}>
@@ -62,7 +69,6 @@ export default function Npcs() {
                                     </Grid>
                                 ))}
                             </Grid>
-                    
                 </Paper>
         </Container>
     )

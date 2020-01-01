@@ -18,3 +18,9 @@ export const setNpcsAsync = (id) => {
         payload: id
     }
 }
+export const addNpcAsync = (npc) => {
+    return {
+        type: constants.ADD_NPC_ASYNC,
+        payload: npc
+    }
+}

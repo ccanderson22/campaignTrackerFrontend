@@ -22,6 +22,7 @@ export default function CampaignCard(props) {
     const { campaign } = props
 
     return (
+        <div>
             <Card 
             className={classes.card}
             variant="outlined"> 
@@ -38,7 +39,8 @@ export default function CampaignCard(props) {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card> 
+        </div>
     )
 }
 

@@ -10,11 +10,21 @@ import constants from '../constants';
 
 export function* setNpcsAsync(action) {
     try {
-        console.log('saga: ', action)
         let id = action.payload
         const data = yield call(Api.fetchNpcsByCampaign, id);
-        console.log('data', data)
         yield put(setNpcs(data))
+    } catch (err) {
+
+    }
+}
+export function* addNpcAsync(npc) {
+    try {
+        // console.log('WHAT: ', action)
+        // let npc = action.payload
+        yield call(Api.addNpc, npc);
+        const data = yield call(Api.fetchNpcsByCampaign, sessionStorage.getItem('campaignId'));
+        yield put(setNpcs(data))
+        // yield put(setCampaigns(data))const data = 
     } catch (err) {
 
     }
@@ -22,4 +32,5 @@ export function* setNpcsAsync(action) {
 
 export function* watchNpcsAsync() {
     yield takeEvery(constants.SET_NPCS_ASYNC, setNpcsAsync)
+    yield takeEvery(constants.ADD_NPC_ASYNC, addNpcAsync)
 }
