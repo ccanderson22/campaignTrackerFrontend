@@ -16,15 +16,19 @@ export default function AddNpcForm() {
     const [abVal, setAbVal] = useState('')
     const [amVal, setAmVal] = useState('')
     const [sex, setSex] = useState('')
+    const [expanded, setExpanded] = useState(false)
 
-    const handleAbValueChange = (e, clear) => {
+    const handleAbValueChange = (e) => {
         setAbVal(e.target.value)
     }
-    const handleAmValueChange = (e, clear) => {
+    const handleAmValueChange = (e) => {
         setAmVal(e.target.value)
     } 
-    const handleSexValueChange = (e, clear) => {
+    const handleSexValueChange = (e) => {
         setSex(e.target.value)
+    }
+    const handleExpansion = () => {
+        setExpanded(!expanded)
     }
 
     const clearForm = (names) => {
@@ -60,7 +64,7 @@ export default function AddNpcForm() {
         <div>
            
         <Container>
-            <ExpansionPanel>
+            <ExpansionPanel expanded={expanded} onClick={() => handleExpansion()}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography align='right'>
                         Add New NPC

@@ -34,9 +34,17 @@ export default function CampaignCard(props) {
                     title="Placeholder Title"
                     />
                     <CardContent>
-                        <Typography>
+                        <Typography variant='h5' align='center'>
                             {campaign.name}
                         </Typography>
+                        <br/>
+                        {campaign.players ? (
+                        <Typography variant='subtitle1' align='center'>
+                            {campaign.players.join(', ')}
+                        </Typography>
+                        ) : (
+                            ''
+                        )}
                     </CardContent>
                 </CardActionArea>
             </Card> 

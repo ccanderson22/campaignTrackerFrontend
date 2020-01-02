@@ -24,3 +24,9 @@ export const addNpcAsync = (npc) => {
         payload: npc
     }
 }
+export const editNpcAsync = (npc) => {
+    return {
+        type: constants.UPDATE_NPC_ASYNC,
+        payload: npc
+    }
+}

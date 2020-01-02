@@ -8,18 +8,22 @@ export default {
     //Fetch constants
     BASE_URL: 'http://localhost:5000',
 
-    //Campaign Constants
+    //Campaign URL Constants
     CAMPAIGN_URL: BASE_URL + '/campaigns',
     ADD_CAMPAIGN_URL: BASE_URL + '/campaigns/add',
+    //Campaign URL Constants
     SET_CAMPAIGN_ID: 'SET_CAMPAIGN_ID',
     SET_CAMPAIGNS: 'SET_CAMPAIGNS',
     SET_CAMPAIGNS_ASYNC: 'SET_CAMPAIGNS_ASYNC',
     ADD_CAMPAIGN_ASYNC: 'ADD_CAMPAIGN_ASYNC',
-    // NPC Constants 
+    // NPC URL Constants 
     NPC_URL: BASE_URL + '/npcs/campaign-id/',
     ADD_NPC_URL: BASE_URL + '/npcs/add/',
+    EDIT_NPC_URL: BASE_URL + '/npcs/update/',
+    // NPC Action Constants
     SET_NPCS: 'SET_NPCS',
     SET_NPCS_ASYNC: 'SET_NPCS_ASYNC',
     SET_NPC_ID: 'SET_NPC_ID',
     ADD_NPC_ASYNC: 'ADD_NPC_ASYNC',
+    UPDATE_NPC_ASYNC: 'UPDATE_NPC_ASYNC',
 }

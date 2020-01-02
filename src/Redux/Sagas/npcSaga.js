@@ -19,12 +19,19 @@ export function* setNpcsAsync(action) {
 }
 export function* addNpcAsync(npc) {
     try {
-        // console.log('WHAT: ', action)
-        // let npc = action.payload
         yield call(Api.addNpc, npc);
         const data = yield call(Api.fetchNpcsByCampaign, sessionStorage.getItem('campaignId'));
         yield put(setNpcs(data))
-        // yield put(setCampaigns(data))const data = 
+    } catch (err) {
+
+    }
+}
+
+export function* editNpcAsync(npc) {
+    try {
+        yield call(Api.editNpc, npc);
+        const data = yield call(Api.fetchNpcsByCampaign, sessionStorage.getItem('campaignId'));
+        yield put(setNpcs(data))
     } catch (err) {
 
     }
@@ -33,4 +40,5 @@ export function* addNpcAsync(npc) {
 export function* watchNpcsAsync() {
     yield takeEvery(constants.SET_NPCS_ASYNC, setNpcsAsync)
     yield takeEvery(constants.ADD_NPC_ASYNC, addNpcAsync)
+    yield takeEvery(constants.UPDATE_NPC_ASYNC, editNpcAsync)
 }

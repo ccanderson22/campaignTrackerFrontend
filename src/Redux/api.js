@@ -125,7 +125,34 @@ export const addNpc = (action) => {
     return new Promise((resolve, reject) => {
         return fetch(url, init)
             .then(res => {
-                console.log(init.body)
+                let jsonResp = res.json();
+                if (res.status <= 204) {
+                    return jsonResp;
+                }
+                throw res.status
+            })
+            .then(jsonResp => {
+                resolve(jsonResp)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+}
+export const editNpc = (action) => {
+    let url = constants.UPDATE_NPC_ASYNC + action.payload._id 
+    let init = {
+        method: 'PUT',
+        headers: new Headers({
+            "Access-Control-Allow-Origin": '*',
+            'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(action.payload)
+    }
+    return new Promise((resolve, reject) => {
+        return fetch(url, init)
+            .then(res => {
+                console.log(res)
                 let jsonResp = res.json();
                 if (res.status <= 204) {
                     return jsonResp;
