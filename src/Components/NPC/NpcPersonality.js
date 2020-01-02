@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { Container, Grid, Typography, TextField } from '@material-ui/core'
 
-export default function NpcPersonalDetailsEdit(){
-    const [editing, setEditing] = useState(false)
+export default function NpcPersonality(){
     const npc = JSON.parse(sessionStorage.getItem('npc')) 
     
     useEffect(() => {
-        console.log(npc.prof)
+        // console.log(npc.prof)
     }, []);
 
     return (
@@ -15,15 +14,7 @@ export default function NpcPersonalDetailsEdit(){
             <form>
                 <Grid container spacing={2}>
                     <Grid item md={6}>
-                        {!editing ? (
-                            <Typography>
-                               Professions: {npc.profession.join(', ')}
-                            </Typography>
-                        ) : (
-                        <TextField
-                            label='Professions'
-                        />
-                        )}
+                        
                     </Grid>
                 </Grid>
             </form>

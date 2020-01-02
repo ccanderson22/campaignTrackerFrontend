@@ -1,14 +1,21 @@
 import React, {useState} from 'react'
-import { Container, Paper, Typography, AppBar, Tabs, Box, Tab } from '@material-ui/core'
+import { Container, Paper, Typography, AppBar, Tabs, Box, Tab, makeStyles } from '@material-ui/core'
 import NpcDetails from '../../Components/NPC/NpcDetails'
 import NpcStats from '../../Components/NPC/NpcStats'
-import NpcPersonalDetailsEdit from '../../Components/NPC/NpcPersonalDetailsEdit'
-  function TabPanel(props) {
+import NpcPersonality from '../../Components/NPC/NpcPersonality'
+ const useStyles = makeStyles({
+    page: {
+      height: '80vh',
+    },
+ })
+
+function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+    const classes = useStyles();
     return (
       <Paper
       elevation={4}
+      className={classes.page}
         component="div"
         role="tabpanel"
         hidden={value !== index}
@@ -49,7 +56,7 @@ export default function NpcView() {
                     <NpcDetails />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <NpcPersonalDetailsEdit />
+                    <NpcPersonality />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <NpcStats />

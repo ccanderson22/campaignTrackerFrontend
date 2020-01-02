@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, ListItemText } from '@material-ui/core'
+import { AppBar, Toolbar, ListItemText, ClickAwayListener } from '@material-ui/core'
 import { Link } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -87,8 +87,11 @@ export default function Navbar() {
         };
 
     return (
-        <div className={classes.root}>
-          <CssBaseline />
+
+          <ClickAwayListener onClickAway={handleDrawerClose}>
+            <div className={classes.root}>
+              <CssBaseline />
+            
           <AppBar
             position="sticky"
             className={clsx(classes.appBar, {
@@ -129,7 +132,7 @@ export default function Navbar() {
              {routes.map(route => (
              route.navLink ? (
 
-                <Link to={route.path} key={route.name} onBlur={handleDrawerClose}>
+                <Link to={route.path} key={route.name}>
                     <ListItem button>
                         <ListItemIcon>
                             <route.icon/>
@@ -145,6 +148,7 @@ export default function Navbar() {
             </List>
             <Divider />
           </Drawer>
-        </div>
+            </div>
+          </ClickAwayListener>
       );
 }
