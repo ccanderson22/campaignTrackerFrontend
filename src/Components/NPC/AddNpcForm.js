@@ -4,6 +4,7 @@ import constants from '../../Redux/constants'
 import { useDispatch } from 'react-redux';
 import * as nActions from '../../Redux/Actions/npcActions'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles({
     sex: {
@@ -28,7 +29,7 @@ export default function AddNpcForm() {
         setSex(e.target.value)
     }
     const handleExpansion = () => {
-        setExpanded(!expanded)
+        setExpanded(prev => !prev)
     }
 
     const clearForm = (names) => {
@@ -64,8 +65,9 @@ export default function AddNpcForm() {
         <div>
            
         <Container>
-            <ExpansionPanel expanded={expanded} onClick={() => handleExpansion()}>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <ExpansionPanel expanded={expanded}>
+                <ExpansionPanelSummary onClick={() => handleExpansion()} expandIcon={<AddIcon/>}>
+                {/* <ExpansionPanelSummary expandIcon={<ExpandMoreIcon  onClick={() => handleExpansion()}/>}> */}
                     <Typography align='right'>
                         Add New NPC
                     </Typography>
